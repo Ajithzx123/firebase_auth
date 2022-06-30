@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "652410334463",
+    "project_id": "immence-test",
+    "storage_bucket": "immence-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:652410334463:android:e57be3b49d71c03428f0ca",
+        "android_client_info": {
+          "package_name": "com.example.firebase_auth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "652410334463-08n3ctenl5dsda5sp3rhijst28vpba90.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByQV_qxd1fzki4qe8wyMfkZtDpHRlxYVw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "652410334463-08n3ctenl5dsda5sp3rhijst28vpba90.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
