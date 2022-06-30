@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_rich_text/easy_rich_text.dart';
 import 'package:firebase/view/custom.dart';
 import 'package:firebase/view/loginpage.dart';
@@ -112,7 +113,14 @@ class RegisterPage extends StatelessWidget {
                   ),
                   SizedBox(height: 1.h),
                   CustomText(
-                      validator: (value) {},
+                      validator: (passwordvalue) {
+                        if (passwordvalue.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          if (passwordvalue.length < 6) {
+                            return ' password Must be more than 6 charater';
+                          }
+                      },
                       textinputaction: TextInputAction.done,
                       textinputtype: TextInputType.name,
                       obscure: true,
@@ -150,6 +158,13 @@ class RegisterPage extends StatelessWidget {
                       ),
                       onPressed: () {
                         FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text.trim(), password: passwordController.text.trim());
+                        // print('email added');
+                        // FirebaseFirestore.instance.collection('user').add({
+                        //   'name': nameController.text.trim(),
+                        //   'phone_number': numbeerController.text.trim(),
+                        // });
+                        // print('number  added');
+
                         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
                         //   return LoginPage();
                         // }));
