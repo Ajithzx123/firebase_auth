@@ -1,6 +1,7 @@
 import 'package:easy_rich_text/easy_rich_text.dart';
-import 'package:firebase_auth/view/custom.dart';
-import 'package:firebase_auth/view/loginpage.dart';
+import 'package:firebase/view/custom.dart';
+import 'package:firebase/view/loginpage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -147,7 +148,12 @@ class RegisterPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10), // <-- Radius
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text.trim(), password: passwordController.text.trim());
+                        // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                        //   return LoginPage();
+                        // }));
+                      },
                       child: Text(
                         "Register",
                         style: TextStyle(

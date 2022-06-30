@@ -1,6 +1,6 @@
-import 'package:firebase_auth/view/loginpage.dart';
+import 'package:firebase/view/Homescreen.dart';
+import 'package:firebase/view/loginpage.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -17,7 +17,7 @@ class Myapp extends StatelessWidget {
     return Sizer(
       builder: (context, orientation, deviceType) {
         return MaterialApp(
-          home: LoginPage(),
+          home: HomeScreen(),
           debugShowCheckedModeBanner: false,
         );
       });

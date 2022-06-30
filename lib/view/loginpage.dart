@@ -1,12 +1,11 @@
 import 'package:easy_rich_text/easy_rich_text.dart';
-import 'package:firebase_auth/view/Homescreen.dart';
-import 'package:firebase_auth/view/custom.dart';
-import 'package:firebase_auth/view/register.dart';
+import 'package:firebase/view/custom.dart';
+import 'package:firebase/view/register.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import 'package:firebase_auth/main.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -64,13 +63,13 @@ class LoginPage extends StatelessWidget {
                   CustomText(
                       validator: ((mailvalue) {
                         if (mailvalue != null) {
-                              if (mailvalue.length > 5 &&
-                                  mailvalue.contains('@') &&
-                                  mailvalue.endsWith('.com')) {
-                                return null;
-                              }
-                              return 'Enter a Valid Email Address';
-                            }
+                          if (mailvalue.length > 5 &&
+                              mailvalue.contains('@') &&
+                              mailvalue.endsWith('.com')) {
+                            return null;
+                          }
+                          return 'Enter a Valid Email Address';
+                        }
                       }),
                       textinputaction: TextInputAction.next,
                       textinputtype: TextInputType.emailAddress,
@@ -141,10 +140,10 @@ class LoginPage extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        //  Navigator.push(context,
-                        //                 MaterialPageRoute(builder: ((context) {
-                        //               return HomeScreen();
-                        //             })));
+                        FirebaseAuth.instance.signInWithEmailAndPassword(
+                            email: emailController.text.trim(),
+                            password: PasswordController.text.trim());
+                     
                       },
                       child: Text(
                         "Login",

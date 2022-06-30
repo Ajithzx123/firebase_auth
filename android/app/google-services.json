@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:652410334463:android:e57be3b49d71c03428f0ca",
+        "mobilesdk_app_id": "1:652410334463:android:ccec386ad42c593f28f0ca",
         "android_client_info": {
-          "package_name": "com.example.firebase_auth"
+          "package_name": "com.example.firebase"
         }
       },
       "oauth_client": [
