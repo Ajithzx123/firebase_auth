@@ -115,11 +115,11 @@ class RegisterPage extends StatelessWidget {
                   CustomText(
                       validator: (passwordvalue) {
                         if (passwordvalue.isEmpty) {
-                            return 'Please enter some text';
-                          }
-                          if (passwordvalue.length < 6) {
-                            return ' password Must be more than 6 charater';
-                          }
+                          return 'Please enter some text';
+                        }
+                        if (passwordvalue.length < 6) {
+                          return ' password Must be more than 6 charater';
+                        }
                       },
                       textinputaction: TextInputAction.done,
                       textinputtype: TextInputType.name,
@@ -157,16 +157,13 @@ class RegisterPage extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                       
-                       register(context);
+                        register(context);
                         // print('email added');
                         // FirebaseFirestore.instance.collection('user').add({
                         //   'name': nameController.text.trim(),
                         //   'phone_number': numbeerController.text.trim(),
                         // });
                         // print('number  added');
-                        
-                     
                       },
                       child: Text(
                         "Register",
@@ -219,16 +216,18 @@ class RegisterPage extends StatelessWidget {
       ),
     );
   }
-Future register(BuildContext context) async {
+
+  Future register(BuildContext context) async {
     try {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailController.text.trim(), 
-        password: passwordController.text.trim(),);
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-                          return LoginPage();
-                        }));
-      }on FirebaseAuthException catch (e) {
-        print(e);
-      }
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+        return LoginPage();
+      }));
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
   }
 }

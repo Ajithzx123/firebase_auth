@@ -1,4 +1,5 @@
 import 'package:easy_rich_text/easy_rich_text.dart';
+import 'package:firebase/view/Homescreen.dart';
 import 'package:firebase/view/custom.dart';
 import 'package:firebase/view/register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -147,10 +148,9 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       onPressed: () {
-                       
-                     setState(() {
-                        signIn(context);
-                     });
+                        setState(() {
+                          signIn(context);
+                        });
                       },
                       child: Text(
                         "Login",
@@ -206,20 +206,17 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-    Future signIn(BuildContext context) async {
-   
+  Future signIn(BuildContext context) async {
     try {
-      
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text.trim(),
         password: PasswordController.text.trim(),
-        
       );
-         
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context) {
+        return HomeScreen();
+      })));
     } on FirebaseAuthException catch (e) {
-     print(e);
-     
-      
+      print(e);
     }
   }
 }
