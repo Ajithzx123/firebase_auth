@@ -2,15 +2,22 @@ import 'package:easy_rich_text/easy_rich_text.dart';
 import 'package:firebase/view/custom.dart';
 import 'package:firebase/view/register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   TextEditingController PasswordController = TextEditingController();
+
   TextEditingController emailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -140,10 +147,10 @@ class LoginPage extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        FirebaseAuth.instance.signInWithEmailAndPassword(
-                            email: emailController.text.trim(),
-                            password: PasswordController.text.trim());
-                     
+                       
+                     setState(() {
+                        signIn(context);
+                     });
                       },
                       child: Text(
                         "Login",
@@ -197,5 +204,22 @@ class LoginPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+    Future signIn(BuildContext context) async {
+   
+    try {
+      
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: PasswordController.text.trim(),
+        
+      );
+         
+    } on FirebaseAuthException catch (e) {
+     print(e);
+     
+      
+    }
   }
 }

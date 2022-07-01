@@ -157,17 +157,16 @@ class RegisterPage extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text.trim(), password: passwordController.text.trim());
+                       
+                       register(context);
                         // print('email added');
                         // FirebaseFirestore.instance.collection('user').add({
                         //   'name': nameController.text.trim(),
                         //   'phone_number': numbeerController.text.trim(),
                         // });
                         // print('number  added');
-
-                        // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-                        //   return LoginPage();
-                        // }));
+                        
+                     
                       },
                       child: Text(
                         "Register",
@@ -219,5 +218,17 @@ class RegisterPage extends StatelessWidget {
         ),
       ),
     );
+  }
+Future register(BuildContext context) async {
+    try {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text.trim(), 
+        password: passwordController.text.trim(),);
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                          return LoginPage();
+                        }));
+      }on FirebaseAuthException catch (e) {
+        print(e);
+      }
   }
 }
